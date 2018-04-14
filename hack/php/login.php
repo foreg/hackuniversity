@@ -77,7 +77,7 @@ function login() {
                 '&Password='+ document.getElementsByName('Password')[0].value;
     xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xmlhttp.send(body);
+    xmlhttp.send(body); 
 }
 function newUser(t) {
 var regForEmail = /^[A-Za-z0-9]{1,}@\w{2,6}.\w{2,3}$/;
