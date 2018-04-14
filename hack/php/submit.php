@@ -34,10 +34,32 @@ class User
             echo $row['Rights'];
         }
     }
+    public function GetAdress($_dogId) {
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $rows = $connection->query("SELECT Users.OpenAdress, Users.ClosedAdress FROM Dogs INNER JOIN Users ON Dogs.OwnerId = Users.id WHERE Dogs.Id = $_dogId");  
+        if (($row = $rows->fetch()) == true) {
+            echo $row[0].' '.$row[1];
+            //var_dump($_dogId);
+        }
+    }
 }
 
 class Walk
 {
+    public function AddWalk($dogId, $date, $adress, $duration, $price)
+    {
+        $adress = urlencode($adress);
+        //var_dump("https://geocode-maps.yandex.ru/1.x/?geocode=$adress");
+        $response = file_get_contents("https://geocode-maps.yandex.ru/1.x/?geocode=$adress");
+        $coords = new SimpleXMLElement($response);
+        $coords = $coords->GeoObjectCollection->featureMember[0]->GeoObject->Point->pos;
+        //var_dump($coords);/*
+        $coords = explode(' ', $coords);
+        $coords = implode(',', array($coords[1], $coords[0]));
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $connection->exec("INSERT INTO Walks (`DogID`,`Date`,`Coords`,`Duration`,`Price`) VALUES ($dogId, '$date', '$coords' , '$duration' , '$price')");
+    }
+
     public function ShowWalks() {
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
         $rows = $connection->query("SELECT Walks.Id,`DogID`,`Name`,`Date`,`Coords`,`Duration`,`Price` FROM `Walks` INNER JOIN Dogs on Dogs.Id = DogID");
@@ -83,6 +105,12 @@ if (isset($_POST["Type"])) {
     }
     if ($_POST["Type"] == "WalkInfo") { //проверить права юзера
         Walk::WalkInfo($_POST["walkId"]);
+    }
+    if ($_POST["Type"] == "Отправить") { //проверить права юзера
+        Walk::AddWalk($_POST["dogId"], $_POST["date"], $_POST["adress"], $_POST["duration"], $_POST["price"]);
+    }
+    if ($_POST["Type"] == "GetAdress") { //проверить права юзера
+        User::GetAdress($_POST["dogId"]);
     }
 }
 ?>

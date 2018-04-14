@@ -10,13 +10,15 @@ class Dog
             $userId = $row[0];
         }
         else {
+            header("Location: login.php");
             die("ошибка");
         }
-        $rows = $connection->query("SELECT `Name` FROM `Dogs` WHERE `OwnerId` = '$userId'");
+        $rows = $connection->query("SELECT `Name`, `Id` FROM `Dogs` WHERE `OwnerId` = '$userId'");
         while (($row = $rows->fetch()) == true) {//значит уже есть юзер 
             echo "<div class='myDog'>";
             echo "<span>".$row['Name']."</span>";
-
+            echo "<input type='button' id = ".$row['Id']." value = 'Walk' onclick = 'Walk(this)'></input>";
+            
             echo "</div>";
         }
     }
@@ -28,6 +30,7 @@ class Dog
             $userId = $row[0];
         }
         else {
+            header("Location: login.php");
             die("ошибка");
         }
         $connection->exec("INSERT INTO `Dogs` (`Id`, `OwnerId`, `Name`, `Breed`, `Size`, `Sex`, `Age`, `Comments`) VALUES (NULL,'$userId', '$name', '$breed', '$size', '$sex', '$age', '$comments')");
