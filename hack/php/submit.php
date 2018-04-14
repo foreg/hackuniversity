@@ -8,7 +8,7 @@ class Auth
             echo "Пользователь с таким логином уже есть";
         }
         else {
-            $connection->exec("INSERT INTO Users (`Email`, `Password`) VALUES ('".$_email."', '".md5($_password)."')");
+            $connection->exec("INSERT INTO Users (`Email`, `Password`, `hash`) VALUES ('".$_email."', '".md5($_password)."', '".md5($_email.$_password)."')");
         }
     }
     public function Login($_email, $_password) {
@@ -23,27 +23,29 @@ class Auth
             }
         }
     }
-    public function IsAuth($_name) {
-        if (isset($_COOKIE[$_name])) {
-            return true;
-        }
-        return false;
-    }
 }
-if (Auth::IsAuth("username")) {
-    echo $_POST['Email'];
-}
-else {
-    if (isset($_POST["Type"])) {
-        if ($_POST["Type"] == "register") {
-            if (isset($_POST["Email"])) { //новый  юзер
-                Auth::Register($_POST['Email'], $_POST['Password']);
-            } 
-            else { //старый юзер
-                Auth::Login($_POST['Email'], $_POST['Password']);
-            }
+
+class User
+{
+    public function CheckRight($_hash) {
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $rows = $connection->query("SELECT `Rights` FROM `Users` WHERE `hash` = '".$_hash."'");  
+        if (($row = $rows->fetch()) == true) {
+            echo $row['Rights'];
         }
     }
 }
 
+
+if (isset($_POST["Type"])) {
+    if ($_POST["Type"] == "register") { //новый  юзер
+        Auth::Register($_POST['Email'], $_POST['Password']);
+    } 
+    if ($_POST["Type"] == "login") { //старый юзер
+        Auth::Login($_POST['Email'], $_POST['Password']);
+    }
+    if ($_POST["Type"] == "checkRights") { //проверить права юзера
+        User::CheckRight($_COOKIE["username"]);
+    }
+}
 ?>

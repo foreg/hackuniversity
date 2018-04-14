@@ -4,7 +4,7 @@ class Dog
     public static function Show($user) {
         
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
-        $rows = $connection->query("SELECT `id` FROM `Users` WHERE `Email` = '".$user."'");
+        $rows = $connection->query("SELECT `id` FROM `Users` WHERE `hash` = '".$user."'");
         $userId;
         if (($row = $rows->fetch()) == true) {//значит уже есть юзер 
             $userId = $row[0];
@@ -22,7 +22,7 @@ class Dog
     }
     public function New($user, $name, $breed, $size, $sex, $age, $comments) {
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
-        $rows = $connection->query("SELECT `id` FROM `Users` WHERE `Email` = '".$user."'");
+        $rows = $connection->query("SELECT `id` FROM `Users` WHERE `hash` = '".$user."'");
         $userId;
         if (($row = $rows->fetch()) == true) {//значит уже есть юзер 
             $userId = $row[0];

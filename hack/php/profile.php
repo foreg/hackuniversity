@@ -17,16 +17,19 @@
             include("DogHandler.php");
             Dog::Show($_COOKIE["username"]);
         ?>
-        <input type = "button" id = "JoinCourses" onclick = "JoinCourses()" value = "Записаться на курсы">
+        
     </div>
 </div>
 
 
 
 <script>
-
+checkRights();
     function JoinCourses() {
         location = "../courses.html";
+    }
+    function OpenMap() {
+        location = "../map.html";
     }
     function AddDog() {
         document.getElementById("NewDog").hidden = true;
@@ -105,7 +108,7 @@
         btn.onclick = exi;
         btn.value = 'Exit';
         document.getElementById('placeForExitButton').appendChild(btn);
-        document.getElementById("g").innerHTML = "Добро пожаловать, " + getCookie("username");
+        document.getElementById("g").innerHTML = "Добро пожаловать";
         document.getElementsByClassName("greetings")[0].classList.remove("displayNone");
         var menu = document.createElement("ul");
         menu.id = "menu";
@@ -191,7 +194,25 @@ var regForEmail = /^[A-Za-z0-9]{1,}@\w{2,6}.\w{2,3}$/;
         alert("Введен неправильный e-mail");                
     }
 }
-
+function checkRights() {
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.DONE == this.readyState) {
+            if(this.responseText == "0") {
+                document.getElementsByClassName("left")[0].innerHTML += '<input type = "button" id = "JoinCourses" onclick = "JoinCourses()" value = "Записаться на курсы">';
+            }
+            else {
+                document.getElementsByClassName("left")[0].innerHTML += '<input type = "button" id = "OpenMap" onclick = "OpenMap()" value = "Перейти к карте">';
+            }
+        }
+    
+    };
+    var body =  'Type=checkRights' + 
+                '&Username=' + getCookie("username") + 
+    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xmlhttp.send(body);
+}
 function setCookie(c_name,value,exdays) {
         var exdate=new Date();
         exdate.setDate(exdate.getDate() + exdays);
