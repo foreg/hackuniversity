@@ -1,0 +1,77 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/styleForReg.css">
+</head>
+<body>
+<nav class="top-menu">
+    <a class="navbar-logo" href=""><img src="logo.png"></a>
+    <ul class="menu-main">
+        <li><a href="index23.html">Главная</a></li>
+        <li><a href="">О нас</a></li>
+        <li><a href="">Выгульщики</a></li>
+        <li><a href="">Курсы</a></li>
+        <li><a href="">Отзывы</a></li>
+        <li><a href="">Контакты</a></li>
+    </ul>
+</nav>
+<form id="login1" action="#" name="register" method="post" onsubmit="return validate_form ( );">
+    <h1>Форма регистрации</h1>
+    <fieldset id="inputs">
+        <input id="username" name="fio" type="text" placeholder="ФИО" autofocus required>
+        <input id="username" name="login" type="text" placeholder="E-mail" autofocus required>
+        <input id="password" name="passwordRe" type="password" placeholder="Пароль" required>
+        <input id="password" name="re_password" type="password" placeholder="Повторите пароль" required>
+    </fieldset>
+    <fieldset id="actions">
+        <input type="submit" id="submit" name="submit" value="Зарегистрироваться">
+    </fieldset>
+</form>
+<script type="text/javascript">
+    function validate_form ( )
+    {
+        // valid = true;
+        // var reFIO = /^[А-ЯЁ][а-яё] + [А-ЯЁ][а-яё] + [А-ЯЁ][а-яё]+$/;
+        // if (reFIO.test(document.register.fio.value) && (document.register.fio.value != "") )
+        // {}
+        // else
+        // {
+        //     alert ( "Поле 'ФИО' было заполнено некорректно" );
+        //     valid = false;
+        //     return valid;
+        // }
+        // var reEmail = /^\w+[@]\w+[.]\w+$/;
+        // if (reEmail.test(document.register.login.value) && (document.register.login.value != "") )
+        // {}
+        // else
+        // {
+        //     alert ( "Поле 'E-mail' было заполнено некорректно" );
+        //     valid = false;
+        //     return valid;
+        // }
+        // var rePassword = /^[0-9a-zA-Z]{4,}$/;
+        // if (rePassword.test(document.register.passwordRe.value) && (document.register.passwordRe.value != "") )
+        // {
+        //     if (document.register.passwordRe.value != document.register.re_password.value)
+        //     {
+        //         alert ( "Пароли не совпадают" );
+        //         valid = false;
+        //         return valid;
+        //     }
+        //     else {}
+        // }
+        // else
+        // {
+        //     alert ( "Поле 'Пароль' было заполнено некорректно" );
+        //     valid = false;
+        //     return valid;
+        // }
+        // return valid;
+        return true;
+    }
+</script>
+</body>
+</html>
