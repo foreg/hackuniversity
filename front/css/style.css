@@ -1,0 +1,68 @@
+.mar{
+    margin-left: 15px;
+}
+.contacts{
+    display: none;
+}
+.menu{
+    background-color: #7f7f7f;
+}
+.menuOpt{
+    margin-top: 15px;
+}
+.logo{
+    /*margin-top: 15px;*/
+    margin-right: 30px;
+}
+.menu{
+    margin-left: -10px;
+}
+.coord{
+    list-style: none;
+}
+.coord li a{
+    color : #505050;
+    text-transform: uppercase;
+}
+.coord li{
+    display: inline-block;
+    line-height: 65px;
+    margin-left: 20px;
+}
+.btn1{
+    border-width: 1px;
+    border-radius: 16px;
+    border-color: white;
+    text-decoration: none;
+    padding: 6px 26px 6px 26px;
+    background-color: #e6a91f;
+}
+.btn1:hover{
+    background-color: #bf8120;
+    color:white;
+    text-decoration: none;
+    border-style:none;
+}
+.btn1:visited{
+    color:#fff;
+    text-decoration: none;
+}
+.btn2{
+    list-style: none;
+    border-width: 1px;
+    border-radius: 16px;
+    border-color: white;
+    border-style: solid;
+    padding: 6px 26px 6px 26px;
+    text-decoration: none;
+}
+.btn2:hover{
+    background-color: #cb8e1f;
+    color:white;
+    text-decoration: none;
+    border-color:#cb8e1f ;
+}
+.btn2:visited{
+    color:#fff;
+    text-decoration: none;
+}
