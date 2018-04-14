@@ -19,3 +19,6 @@ body {
 .Inline{
     display: inline-block;
 }
+.Upper{
+    text-transform: uppercase;
+}

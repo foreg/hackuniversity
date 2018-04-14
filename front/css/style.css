@@ -66,3 +66,100 @@
     color:#fff;
     text-decoration: none;
 }
+.company-name{
+
+    font-size: 35px;
+    font-weight: 300;
+}
+.zag{
+    font-size: 45px;
+    font-weight: 300;
+}
+.dfx-btn-grp a:not(:nth-child(1)) {
+    margin-left: 10px;
+}
+.bgk1{
+    background: url(../img/bgk2.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: 100vh;
+}
+.bgk2{
+
+}
+.main-banner{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+.aboutUs{
+    margin-top: 80px;
+}
+.iconDog1{
+    margin-top: 60px;
+    /*margin-left: -400px;*/
+    /*margin-left: 400px;*/
+}
+.work{
+    background-image: url(../img/wall.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.yelbox{
+    border-style:solid;
+    border-color:#e6af27;
+    border-width: 2px;
+    padding: 12px 60px 39px 40px;
+}
+.korrekirovka{
+    margin:30px 15px 30px 25px;
+}
+.iconn{
+    margin-top: 120px;
+}
+.iconn1{
+    margin-top: 75px;
+}
+.shr{
+    font-size: 18px;
+    margin-top: -7px;
+}
+
+.border {
+    margin-top: 40px;
+    list-style: none;
+    padding: 0;
+}
+.border li {
+    font-family: "Trebuchet MS", "Lucida Sans";
+    padding: 7px 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 10px solid #e6a91f;
+    box-shadow: 2px -2px 5px 0 rgba(0,0,0,.1),
+    -2px -2px 5px 0 rgba(0,0,0,.1),
+    2px 2px 5px 0 rgba(0,0,0,.1),
+    -2px 2px 5px 0 rgba(0,0,0,.1);
+    font-size: 20px;
+    letter-spacing: 2px;
+    transition: 0.3s all linear;
+}
+.border li:nth-child(2){border-color: #e6a91f;}
+.border li:nth-child(3){border-color: #e6a91f;}
+.border li:nth-child(4){border-color: #e6a91f;}
+.border li:nth-child(5){border-color: #e6a91f;}
+.border li:hover {border-left: 10px solid transparent;}
+.border li:nth-child(1):hover {border-right: 10px solid #e6a91f;}
+.border li:nth-child(2):hover {border-right: 10px solid #e6a91f;}
+.border li:nth-child(3):hover {border-right: 10px solid #e6a91f;}
+.border li:nth-child(4):hover {border-right: 10px solid #e6a91f;}
+.border li:nth-child(5):hover {border-right: 10px solid #e6a91f;}
+
+.dog2{
+    margin-top: 120px;
+}
