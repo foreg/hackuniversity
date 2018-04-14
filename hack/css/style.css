@@ -62,3 +62,25 @@
 .rightMenu .korpus .vhod .btn {
     width: 290px;
 }
+
+
+.dog {
+    width: 60%;
+    height: 80%;
+    position: absolute;
+    left: 30%;
+    top:10%;
+    background-color: wheat;
+    opacity: 0.8;
+}
+.top {
+    z-index: 999999;
+}
+.closeBTN {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+    top: 10px; 
+    cursor: pointer;
+}

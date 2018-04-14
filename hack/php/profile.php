@@ -6,36 +6,116 @@
 </head>
 <body>
 <div class="rightMenu">
-    <div class="korpus">
-        <input type="radio" name="odin" checked="checked" <? if (isset($_POST["in"])) echo 'checked="checked"';?> id="vkl1"/><label id="label1" for="vkl1">Войти</label><input type="radio" name="odin" <? if (isset($_POST["up"])) echo 'checked="checked"';?> id="vkl2"/><label for="vkl2">Зарегистрироваться</label>
-        <div><!--старый юзер-->
-            <form class="vhod">
-                <p class="small">Введите логин</p> 
-                <input type="text" name="Email"             value="sgkjn@ENG.RU"                        placeholder="Логин"></input>
-                <p class="small">Введите пароль</p> 
-                <input type="password" name="Password"          value="Qwerty"                        placeholder="Пароль"></input>
-                <input type="button" name="add" class="btn" value="Войти" onclick = "login(this)"></input>
-            </form>
-        </div>
-        <div> <!--новый юзер-->
-            <form class="register">
-                <p class="small">E-mail</p>                 
-                <input type="text" name="email"             value=""                        placeholder="e-mail"></input>
-                <p class="small">Пароль (не менее 6 латинских символов разного регистра)</p> 
-                <input type="password" name="PasswordN"          value=""                        placeholder="Пароль"></input>
-                <p class="small">Подтвердите пароль</p> 
-                <input type="password" name="Confirm"           value=""                        placeholder="Подтвердите"></input>
-                <input type="button" name="add" class="btn" value="Зарегистрироваться" onclick = "newUser(this)"></input>
-            </form>
-        </div>
+    <div class="greetings">
+        <span id="g"></span><div id = "placeForExitButton"></div>
     </div>
 </div>
-<?
-    
-?>
+<div class = "content">
+    <div class = "left">
+        <input type = "button" id = "NewDog" onclick = "AddDog()" value = "Добавить собаку">
+        <?
+            include("DogHandler.php");
+            Dog::Show($_COOKIE["username"]);
+        ?>
+        <input type = "button" id = "JoinCourses" onclick = "JoinCourses()" value = "Записаться на курсы">
+    </div>
+</div>
+
 
 
 <script>
+
+    function JoinCourses() {
+        location = "../courses.html";
+    }
+    function AddDog() {
+        document.getElementById("NewDog").hidden = true;
+        var div = document.createElement("div");
+        div.id = "dog";
+        div.classList.add("top", "dog");
+        div.innerHTML = "<h1>Занесение информации о собаке</h1>";
+        var closeBTN = document.createElement("img");
+        closeBTN.src = "../img/close.png";
+        closeBTN.classList.add("closeBTN");
+        closeBTN.onclick = () => {
+            document.getElementById("dog").remove();
+        document.getElementById("NewDog").hidden = false;            
+        }
+        div.appendChild(closeBTN);
+        var form  = document.createElement("form");
+        form.id = "form";
+        form.method = "POST";
+        form.action = "DogHandler.php";
+        
+        var Type = document.createElement("input");
+        Type.type = "hidden";
+        Type.name = "Type";
+        Type.value = "AddNewDog";
+
+        var Name = document.createElement("input");
+        Name.type = "text";
+        Name.name = "name";
+        Name.placeholder = "Кличка";
+
+        var Breed = document.createElement("input");
+        Breed.type = "text";
+        Breed.name = "breed";
+        Breed.placeholder = "Порода";
+        
+        var Size = document.createElement("input");
+        Size.type = "text";
+        Size.name = "size";
+        Size.placeholder = "Размер";
+
+        var Sex = document.createElement("input");
+        Sex.type = "text";
+        Sex.name = "sex";
+        Sex.placeholder = "Пол";
+
+        var Age = document.createElement("input");
+        Age.type = "text";
+        Age.name = "age";
+        Age.placeholder = "Возраст";
+
+        var Comments = document.createElement("input");
+        Comments.type = "text";
+        Comments.name = "comments";
+        Comments.placeholder = "Комментарии";
+
+        var Submit = document.createElement("input");
+        Submit.type = "submit";
+        Submit.name = "submit";
+        Submit.value = "Добавить";
+
+        
+        document.body.appendChild(div);
+        document.getElementById("dog").appendChild(form);
+        document.getElementById("form").appendChild(Type);
+        document.getElementById("form").appendChild(Name);
+        document.getElementById("form").appendChild(Breed);
+        document.getElementById("form").appendChild(Size);
+        document.getElementById("form").appendChild(Sex);
+        document.getElementById("form").appendChild(Age);
+        document.getElementById("form").appendChild(Comments);
+        document.getElementById("form").appendChild(Submit);
+    }
+    if (checkCookie()) {
+        var btn = document.createElement ('input');
+        btn.type = 'button';
+        btn.onclick = exi;
+        btn.value = 'Exit';
+        document.getElementById('placeForExitButton').appendChild(btn);
+        document.getElementById("g").innerHTML = "Добро пожаловать, " + getCookie("username");
+        document.getElementsByClassName("greetings")[0].classList.remove("displayNone");
+        var menu = document.createElement("ul");
+        menu.id = "menu";
+        document.getElementsByClassName("greetings")[0].appendChild(menu); 
+    }
+function exi() {
+    //alert("d");
+    setCookie("username", "", {expires: -1})
+	location = "../php/login.php";        
+    }
 // instantLogin();
 // function instantLogin() {
 //     var xmlhttp = new XMLHttpRequest();
@@ -66,7 +146,7 @@ function login() {
             else {
                 //alert("Добро пожаловать " + this.responseText);
                 setCookie("username",document.getElementsByName('Email')[0].value,365);
-                window.location = "https://127.0.0.1/hack/php/profile.php";
+                window.location = "https://127.0.0.1/hack/profile.php";
             }
         }
     
