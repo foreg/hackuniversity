@@ -5,29 +5,90 @@
     display: none;
 }
 .menu{
-    background-color: #7f7f7f;
+    position: sticky;
+    z-index: 2;
+    top:0;
+    height: 15%;
+    background-color: #ffffff;
 }
 .menuOpt{
     margin-top: 15px;
 }
 .logo{
     /*margin-top: 15px;*/
+    list-style: none;
     margin-right: 30px;
 }
 .menu{
-    margin-left: -10px;
+    /*margin-left: -10px;*/
 }
 .coord{
+    margin-top: 20px;
     list-style: none;
+    margin-bottom: 30px;
 }
 .coord li a{
-    color : #505050;
+    font-size: 16px;
+    color : #231a05;
     text-transform: uppercase;
 }
 .coord li{
     display: inline-block;
-    line-height: 65px;
+    line-height: 30px;
     margin-left: 20px;
+}
+.coord1{
+    margin-top: 10px;
+    list-style: none;
+}
+.coord1 li a{
+    color : #ffffff;
+    text-transform: uppercase;
+}
+.coord1 li{
+    display: inline-block;
+    line-height: 20px;
+    margin-left: 0px;
+}
+.topp{
+    margin-top: 11px;
+}
+.btn1St{
+    border-width: 1px;
+    border-radius: 16px;
+    border-color: white;
+    text-decoration: none;
+    padding: 6px 26px 6px 26px;
+    background-color: #f2c504;
+}
+.btn1St:hover{
+    background-color: #f2b12a;
+    color:white;
+    text-decoration: none;
+    border-style:none;
+}
+.btn1St:visited{
+    color:black;
+    text-decoration: none;
+}
+.btn2St{
+    list-style: none;
+    border-width: 1px;
+    border-radius: 16px;
+    border-color: white;
+    border-style: solid;
+    padding: 6px 26px 6px 26px;
+    text-decoration: none;
+}
+.btn2St:hover{
+    background-color: #f2b12a;
+    color:white;
+    text-decoration: none;
+    border-color:#f2c504 ;
+}
+.btn2St:visited{
+    color:black;
+    text-decoration: none;
 }
 .btn1{
     border-width: 1px;
@@ -35,16 +96,16 @@
     border-color: white;
     text-decoration: none;
     padding: 6px 26px 6px 26px;
-    background-color: #e6a91f;
+    background-color: #f2c504;
 }
 .btn1:hover{
-    background-color: #bf8120;
+    background-color: #f2b12a;
     color:white;
     text-decoration: none;
     border-style:none;
 }
 .btn1:visited{
-    color:#fff;
+    color: #ffffff;
     text-decoration: none;
 }
 .btn2{
@@ -57,13 +118,13 @@
     text-decoration: none;
 }
 .btn2:hover{
-    background-color: #cb8e1f;
+    background-color: #f2b12a;
     color:white;
     text-decoration: none;
-    border-color:#cb8e1f ;
+    border-color:#f2c504 ;
 }
 .btn2:visited{
-    color:#fff;
+    color: #ffffff;
     text-decoration: none;
 }
 .company-name{
@@ -79,11 +140,12 @@
     margin-left: 10px;
 }
 .bgk1{
-    background: url(../img/bgk2.png);
+    background: url(../img/bgk.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
     height: 100vh;
+    /*position: relative;*/
 }
 .bgk2{
 
@@ -100,6 +162,7 @@
 }
 .iconDog1{
     margin-top: 60px;
+    margin-bottom: 60px;
     /*margin-left: -400px;*/
     /*margin-left: 400px;*/
 }
@@ -120,19 +183,26 @@
     margin:30px 15px 30px 25px;
 }
 .iconn{
-    margin-top: 120px;
+    margin-top: 150px;
 }
 .iconn1{
     margin-top: 75px;
 }
+.down{
+    margin-top: 40px;
+}
 .shr{
     font-size: 18px;
-    margin-top: -7px;
+    /*margin-top: -7px;*/
+}
+.kor{
+    margin-top: 120px;
 }
 
 .border {
     margin-top: 40px;
     list-style: none;
+    margin-bottom: 80px;
     padding: 0;
 }
 .border li {
@@ -162,4 +232,14 @@
 
 .dog2{
     margin-top: 120px;
+}
+.end{
+    background-color: #000000;
+}
+.about{
+    margin-left: 38px;
+}
+.whyMe{
+    margin-top: 60px;
+    /*margin-bottom: 60px;*/
 }

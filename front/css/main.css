@@ -22,3 +22,9 @@ body {
 .Upper{
     text-transform: uppercase;
 }
+.Bold{
+    font-weight: bold;
+}
+.Up{
+    margin-top: 40px;
+}
