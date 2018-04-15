@@ -127,16 +127,6 @@ function Book(sender) {
     xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      
-      async function demo() {
-
-        await sleep(2000);
-      }
-      
-      demo();
 
 
     var closeBTN = document.createElement("img");
@@ -146,6 +136,32 @@ function Book(sender) {
         document.getElementById("info").remove();
     }
     div.appendChild(closeBTN);
+    //alert(sender.name);
+    document.body.appendChild(div);
+}
+function ShowBets(walkId) {
+    var bets = document.createElement("div");
+    bets.id = "bets";
+    bets.classList.add();
+
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.DONE == this.readyState) {
+            var res = this.responseText.split('_');
+            for (var i = 0; i < res.length; i++) {
+                var span = document.createElement("span");
+                span.classList.add("top");
+                span.innerHTML = res[i] + "<br>";
+                bets.appendChild(span);                    
+            }
+        }
+    
+    };
+    var body =  'Type=ShowBets' + 
+                '&walkId=' + walkId;
+    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xmlhttp.send(body);
     //alert(sender.name);
     document.body.appendChild(div);
 }

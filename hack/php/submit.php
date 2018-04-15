@@ -88,6 +88,19 @@ class Walk
     }
 }
 
+class Bet
+{
+    public function ShowBets($walkId) {
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $rows = $connection->query("SELECT Walks.Id,`DogID`, Dogs.OwnerId, Dogs.Name, Dogs.Breed, Dogs.Size, Dogs.Sex, Dogs.Age, Dogs.Comments, Users.Name, Users.Phone,`Date`,`Duration`,`Price` FROM Walks INNER Join Dogs ON Dogs.Id = Walks.DogID INNER JOIN Users ON Dogs.OwnerId = Users.id WHERE Walks.Id = $walkId");
+        if (($row = $rows->fetch(PDO::FETCH_NUM)) == true) {//значит уже есть юзер 
+            $res = implode('_', $row); //переписать как человек + файл map
+
+            echo $res;
+        }
+    }
+}
+
 
 
 if (isset($_POST["Type"])) {
@@ -111,6 +124,9 @@ if (isset($_POST["Type"])) {
     }
     if ($_POST["Type"] == "GetAdress") { //проверить права юзера
         User::GetAdress($_POST["dogId"]);
+    }
+    if ($_POST["Type"] == "ShowBets") { //проверить права юзера
+        Bet::ShowBets($_POST["walkId"]);
     }
 }
 ?>
