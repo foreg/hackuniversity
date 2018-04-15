@@ -5,9 +5,9 @@
     <link href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-<div class="rightMenu">
-    <div class="korpus">
-        <input type="radio" name="odin" checked="checked" <? if (isset($_POST["in"])) echo 'checked="checked"';?> id="vkl1"/><label id="label1" for="vkl1">Войти</label><input type="radio" name="odin" <? if (isset($_POST["up"])) echo 'checked="checked"';?> id="vkl2"/><label for="vkl2">Зарегистрироваться</label>
+<div class="rightMenu ">
+    <div class="korpus ">
+        <input type="radio" name="odin" checked="checked" <? if (isset($_POST["in"])) echo 'checked="checked"';?> id="vkl1"/><label id="label1"  for="vkl1">Войти</label><input type="radio" name="odin" <? if (isset($_POST["up"])) echo 'checked="checked"';?> id="vkl2"/><label for="vkl2">Зарегистрироваться</label>
         <div><!--старый юзер-->
             <form class="vhod">
                 <p class="small">Введите логин</p> 
@@ -77,7 +77,7 @@ function login() {
                 '&Password='+ document.getElementsByName('Password')[0].value;
     xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xmlhttp.send(body);
+    xmlhttp.send(body); 
 }
 function newUser(t) {
 var regForEmail = /^[A-Za-z0-9]{1,}@\w{2,6}.\w{2,3}$/;

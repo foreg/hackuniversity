@@ -194,6 +194,49 @@ var regForEmail = /^[A-Za-z0-9]{1,}@\w{2,6}.\w{2,3}$/;
         alert("Введен неправильный e-mail");                
     }
 }
+
+function Walk(sender) {
+var defaultAdress;
+//alert(mark.name);
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+    if (this.DONE == this.readyState) {
+        defaultAdress = this.responseText;
+    }
+};
+var body =  'Type=GetAdress' + 
+            '&dogId=' + sender.id;
+xmlhttp.open("POST",'/hack/php/submit.php' , true);
+xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xmlhttp.send(body);
+setTimeout(()=>{
+var div = document.createElement("div");
+div.id = "dog";
+div.classList.add("top", "dog");
+div.innerHTML = "<h1>Занесение информации о прогулке</h1>";
+div.innerHTML += "<h3>" + sender.id+ "</h3>";
+div.innerHTML += "<form action = 'submit.php' method='POST'> " 
++ "<input type='datetime-local' name = 'date'></input>"
++ "<input type='text' name = 'adress' value = '"+defaultAdress+"'></input>"
++ "<input type='text' name = 'duration' placeholder='duration'></input>"
++ "<input type='text' name = 'price' placeholder='price'></input>"
++ "<input type='hidden' name = 'dogId' value = "+sender.id+"></input>"
++ "<input type='submit' name = 'Type' value = 'Отправить'></input>"; //поменять submit.php если менять value
++ "</form>";
+var closeBTN = document.createElement("img");
+closeBTN.src = "img/close.png";
+closeBTN.classList.add("closeBTN");
+closeBTN.onclick = () => {
+    document.getElementById("dog").remove();
+}
+div.appendChild(closeBTN);
+//alert(sender.name);
+document.body.appendChild(div);
+}, 300);
+
+}
+
+
 function checkRights() {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
