@@ -1,33 +1,68 @@
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Личный кабинет</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Форма авторизации</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="libs/Bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
 </head>
 <body>
-<nav class="top-menu">
-    <a class="navbar-logo" href=""><img src="logo.png"></a>
-    <ul class="menu-main">
-        <li><a href="">Главная</a></li>
-        <li><a href="">О нас</a></li>
-        <li><a href="">Выгульщики</a></li>
-        <li><a href="">Курсы</a></li>
-        <li><a href="">Отзывы</a></li>
-        <li><a href="">Контакты</a></li>
-    </ul>
-</nav>
+<div class="bgk1">
+    <section class="contacts">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-left"><span
+                            class="glyphicon glyphicon-home"></span><span> г.Тюмень ул.Ленина 23</span>
+                    </div>
+                    <div class="pull-right mar"><span class="glyphicon glyphicon-envelope"></span>
+                        WallkieDog@mail.ru
+                    </div>
+                    <div class="pull-right"><span class="glyphicon glyphicon-headphones"></span>
+                        +7(12340)22-22-22
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="menu">
+        <div class="container">
+            <div class="row ">
+                <div class="menuOpt">
+                    <ul class="col-md-2 coord pull-left">
+                        <li class="logo"><img src="img/logo.png" height="80" width="80"/></li>
+                    </ul>
+                    <ul class=" col-md-5 coord pull-left">
+                        <li class="gyper"><a href="#">о нас</a></li>
+                        <li class="gyper"><a href="#">выгульщики</a></li>
+                        <li class="gyper"><a href="#">отзывы</a></li>
+                        <li class="gyper"><a href="#">рейтинг</a></li>
+                    </ul>
+                    <ul class="col=md-2 coord pull-right">
+                        <li class="gyper"><a href="#" class="btn1 Color2">регистрация</a></li>
+                        <li class="gyper"><a href="#" class="btn1 Color2">войти</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 <div class="main">
     <div class="OrderDogs">
-        <h1>Список песиков</h1>
-        <a href="#"> <img class="icons" src="images/plus.png"> </a>
-        <a href="#"> <img class="icons" src="images/minus.jpg"> </a>
-        <a href="#"> <img class="icons" src="images/refresh.png"> </a>
+        <h1>Ваши питомцы</h1>
+        <a href="#"> <span id ="refresh" class='glyphicon glyphicon-refresh'> </span> </a>
+        <a href="#"> <span id = "remove"class='glyphicon glyphicon-remove'> </span> </a>
+        <input type="submit" class="walking" id ="submit2" value="Гулять"> </input>
         <!--<input type="button" id="submit2" name="submit" value="Изменить">-->
         <!--<input type="button" id="submit1" name="submit" value="Удалить">-->
         <! код Php  !>
     </div>
-    <form id="login2" action="#" method="post">
+    <form id="loginLK" action="#" method="post">
         <h1>Личный кабинет</h1>
         <fieldset id="inputs1">
             <div class="Blocks"> <div class="textDiv">ФИО</div> <input id="username" name="login" type="text" placeholder="Слепченко В.П." autofocus required></div>
@@ -35,11 +70,37 @@
             <div class="Blocks"> <div class="textDiv">E-mail</div> <input id="password" name="password" type="text" placeholder="hedgehog9898@Mail.ru" required></div>
             <div class="Blocks1"> <div class="textDiv">Адрес</div> <input id="password" name="password" type="text" placeholder="ул. Харьковская 27/кв 31" required></div>
             <div class="Blocks"> <div class="textDiv">Соц.сети</div> <input id="password" name="password" type="text" placeholder="vk.com/login" required></div>
-            <div class="Blocks1 saveButton"> <div class="textDiv">&nbsp;&nbsp;</div> <input name="password" type="submit" value="Сохранить" required></div>
+            <div class="Blocks1"> <div class="textDiv">&nbsp;&nbsp;</div> <input  name="password" class="orange" id="submit1" type="submit" value="Сохранить" required></div>
         </fieldset>
     </form>
 </div>
-
+<section class="end">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 ">
+                <h3 class="Color2">Контакты</h3>
+                <div class="Color2 pull-left "><span
+                        class="glyphicon glyphicon-home"></span><span> г.Тюмень ул.Ленина 23</span>
+                </div>
+                <div class="Color2 pull-left topp"><span class="glyphicon glyphicon-envelope"></span>
+                    WallkieDog@mail.ru
+                </div>
+                <div class="Color2 pull-left topp"><span class="glyphicon glyphicon-headphones"></span>
+                    +7(12340)22-22-22
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h3 class="Color2 about">Ссылки</h3>
+                <ul class="coord1 Color2">
+                    <li><a href="#">о нас</a></li>
+                    <li><a href="#">выгульщики</a></li>
+                    <li><a href="#">особенности</a></li>
+                    <li><a href="#">рейтинг</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 </body>
