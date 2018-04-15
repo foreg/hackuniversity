@@ -51,20 +51,20 @@ function init () {
     geoCollection = new ymaps.GeoObjectCollection(null, {
             preset: 'islands#blackStretchyIcon'
     });
-    Ids = [0,1];
-    Coords = [[57.15034181391009,65.57326084136761], [57.15534181391009,65.57326084136761]];
-    Titles = ["Пес1", "Пес2"];
-    ShortDescription = ["Шибаину", "Мопс"];
-    FullDescription = [ "ФОТО, Шиба, средний размер, гулять 50 минут, телефон владельца +79999999999",
-                        "Мопс, маленький, гулять 30 минут, телефон +79999999999"];
-    for (var i = 0, l = Coords.length; i < l; i++) {
-        geoCollection.add(new ymaps.Placemark(Coords[i], {
-            iconContent: Titles[i],
-            balloonContent: ShortDescription[i] + "<input type='button' value = 'Хочу выгуливать' name='" + Ids[i].toString() + "' onclick=Book(this)>"
-        }));
-        // var d = geoCollection.get(i);
-        // d.ballon.iconContent = i.toString();
-    }
+    // Ids = [0,1];
+    // Coords = [[57.15034181391009,65.57326084136761], [57.15534181391009,65.57326084136761]];
+    // Titles = ["Пес1", "Пес2"];
+    // ShortDescription = ["Шибаину", "Мопс"];
+    // FullDescription = [ "ФОТО, Шиба, средний размер, гулять 50 минут, телефон владельца +79999999999",
+    //                     "Мопс, маленький, гулять 30 минут, телефон +79999999999"];
+    // for (var i = 0, l = Coords.length; i < l; i++) {
+    //     geoCollection.add(new ymaps.Placemark(Coords[i], {
+    //         iconContent: Titles[i],
+    //         balloonContent: ShortDescription[i] + "<input type='button' value = 'Хочу выгуливать' name='" + Ids[i].toString() + "' onclick=Book(this)>"
+    //     }));
+    //     // var d = geoCollection.get(i);
+    //     // d.ballon.iconContent = i.toString();
+    // }
     ShowDogs();
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -110,9 +110,11 @@ function Book(sender) {
     div.innerHTML = "<h1>" + sender.name + "</h1>";
 
     var xmlhttp = new XMLHttpRequest();
+    //var walkId;
     xmlhttp.onreadystatechange = function() {
         if (this.DONE == this.readyState) {
             var res = this.responseText.split('_');
+            //walkId = res[0];
             for (var i = 0; i < res.length; i++) {
                 var span = document.createElement("span");
                 span.classList.add("top");
@@ -134,23 +136,54 @@ function Book(sender) {
     closeBTN.classList.add("closeBTN");
     closeBTN.onclick = () => {
         document.getElementById("info").remove();
+        clearInterval(timerId);
     }
     div.appendChild(closeBTN);
     //alert(sender.name);
     document.body.appendChild(div);
-}
-function ShowBets(walkId) {
-    var bets = document.createElement("div");
-    bets.id = "bets";
-    bets.classList.add();
 
+    //ShowBets(walkId);
+}
+
+function Refresh(walkId) {
+    var itemsToDelete =document.getElementsByClassName("auction");
+    for (var i = 0; itemsToDelete.length > 0; i++) {
+        itemsToDelete[i].remove();
+        i--;
+    }
+    
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.DONE == this.readyState) {
             var res = this.responseText.split('_');
             for (var i = 0; i < res.length; i++) {
                 var span = document.createElement("span");
-                span.classList.add("top");
+                //span.classList.add("auction");
+                span.className = "auction";
+                span.innerHTML = res[i] + "<br>";
+                document.getElementById("bets").appendChild(span);                    
+            }
+        }
+    
+    };
+    var body =  'Type=ShowBets' + 
+                '&walkId=' + walkId;
+    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xmlhttp.send(body);
+}
+var timerId;
+function ShowBets(walkId) {
+    var bets = document.createElement("div");
+    bets.id = "bets";
+    bets.classList.add();
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.DONE == this.readyState) {
+            var res = this.responseText.split('_');
+            for (var i = 0; i < res.length; i++) {
+                var span = document.createElement("span");
+                span.classList.add("auction");
                 span.innerHTML = res[i] + "<br>";
                 bets.appendChild(span);                    
             }
@@ -162,9 +195,62 @@ function ShowBets(walkId) {
     xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
+    setTimeout(()=>{
+        timerId = setInterval(() => {Refresh(walkId);},3000);
+        //var timerId = setInterval('alert("sdg")',3000);
+    },500);
+    
     //alert(sender.name);
-    document.body.appendChild(div);
+
+    document.getElementById("info").appendChild(bets);
+
+    var form  = document.createElement("form");
+    form.id = "form";
+    form.method = "POST";
+    form.action = "php/submit.php";
+
+    var price = document.createElement("input");
+    price.type = "text";
+    price.name = "price";
+    price.placeholder = "price";
+
+    var hiddenWalkId = document.createElement("input");
+    hiddenWalkId.type = "hidden";
+    hiddenWalkId.name = "walkId";    
+    hiddenWalkId.value = walkId;
+    var walkerId;
+
+    var xmlhttp1 = new XMLHttpRequest();
+    xmlhttp1.onreadystatechange = function() {
+        if (this.DONE == this.readyState) {
+            walkerId = this.responseText;
+        }
+    
+    };
+    var body =  'Type=GetID';
+    xmlhttp1.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xmlhttp1.send(body);
+    setTimeout(()=>{
+        var hiddenWalkerId = document.createElement("input");
+        hiddenWalkerId.type = "hidden";
+        hiddenWalkerId.value = walkerId;
+        hiddenWalkerId.name = "walkerId";
+
+        var Submit = document.createElement("input");
+        Submit.type = "submit";
+        Submit.name = "submit";
+        Submit.value = "Сделать ставку";
+
+        document.getElementById("bets").appendChild(form);
+        document.getElementById("form").appendChild(price);
+        document.getElementById("form").appendChild(hiddenWalkId);
+        document.getElementById("form").appendChild(hiddenWalkerId);
+        document.getElementById("form").appendChild(Submit);
+    },400);
 }
+
+
 function AddMark(place) {
     myGeoObject = new ymaps.GeoObject({
         // Описание геометрии.
@@ -223,8 +309,8 @@ function ShowDogs() {
                     var dog = dogsCoords[i].split('|');
                     var shortDate = new Date(dog[2]);
                     geoCollection.add(new ymaps.Placemark(dog[0].split(','), {
-                        iconContent: /*"<img src='"+dog[1]+"'</img>"*/shortDate.getDate() + '.' + (shortDate.getMonth()+1) + " " + dog[4],
-                        balloonContent: "Продолжительность выгула " + dog[3]+ "<br>" + dog[5] + "<br><input type='button' value = 'Хочу выгуливать' name='" + dog[6] + "' onclick=Book(this)>"
+                        iconContent: shortDate.getDate() + '.' + (shortDate.getMonth()+1) + " " + dog[4],
+                        balloonContent: "Продолжительность выгула " + dog[3]+ "<br>" + dog[5] + "<br><input type='button' value = 'Хочу выгуливать' name='" + dog[6] + "' onclick='Book(this); ShowBets(this.name)'>"
                     }));
                 }
             }

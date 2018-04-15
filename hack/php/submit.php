@@ -42,6 +42,15 @@ class User
             //var_dump($_dogId);
         }
     }
+    public function GetId() {
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $rows = $connection->query("SELECT Id FROM Users WHERE `hash` = '".$_COOKIE['username']."'");  
+        if (($row = $rows->fetch()) == true) {
+            echo $row[0];
+            //var_dump($_dogId);
+        }
+        //var_dump("SELECT Id FROM Users WHERE `hash` = '".$_COOKIE['username']."'");        
+    }
 }
 
 class Walk
@@ -58,6 +67,7 @@ class Walk
         $coords = implode(',', array($coords[1], $coords[0]));
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
         $connection->exec("INSERT INTO Walks (`DogID`,`Date`,`Coords`,`Duration`,`Price`) VALUES ($dogId, '$date', '$coords' , '$duration' , '$price')");
+        header("Location: profile.php");
     }
 
     public function ShowWalks() {
@@ -92,12 +102,25 @@ class Bet
 {
     public function ShowBets($walkId) {
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
-        $rows = $connection->query("SELECT Walks.Id,`DogID`, Dogs.OwnerId, Dogs.Name, Dogs.Breed, Dogs.Size, Dogs.Sex, Dogs.Age, Dogs.Comments, Users.Name, Users.Phone,`Date`,`Duration`,`Price` FROM Walks INNER Join Dogs ON Dogs.Id = Walks.DogID INNER JOIN Users ON Dogs.OwnerId = Users.id WHERE Walks.Id = $walkId");
-        if (($row = $rows->fetch(PDO::FETCH_NUM)) == true) {//значит уже есть юзер 
-            $res = implode('_', $row); //переписать как человек + файл map
+        $rows = $connection->query("SELECT Users.Name, Bets.Price, Bets.time FROM Bets INNER JOIN Users ON Bets.WalkerID = Users.id INNER JOIN Walks ON Walks.Id = Bets.WalkID WHERE Walks.Id = $walkId ORDER BY Bets.time DESC LIMIT 3");
+        $result;
+        while (($row = $rows->fetch(PDO::FETCH_NUM)) == true) {//значит уже есть юзер 
+            $res = implode('|', $row); //переписать как человек + файл map
 
-            echo $res;
+            $result[] = $res;
         }
+        if (isset($result))
+            echo implode('_', $result);
+        else {
+            echo "Ставок нет";
+        }
+    }
+
+    public function PlaceBet($walkId, $walkerId, $price) {
+        $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
+        $connection->exec("INSERT INTO Bets (WalkID, WalkerID, `time`, Price) VALUES ('$walkId', '$walkerId', NOW(), '$price')");
+        //echo "INSERT INTO Bets (WalkID, WalkerID, `time`, Price) VALUES ('$walkId', '$walkerId', NOW(), '$price')";
+        header("Location: ../map.html");        
     }
 }
 
@@ -125,8 +148,16 @@ if (isset($_POST["Type"])) {
     if ($_POST["Type"] == "GetAdress") { //проверить права юзера
         User::GetAdress($_POST["dogId"]);
     }
+    if ($_POST["Type"] == "GetID") { //проверить права юзера
+        User::GetId();
+    }
     if ($_POST["Type"] == "ShowBets") { //проверить права юзера
         Bet::ShowBets($_POST["walkId"]);
+    }
+}
+else {
+    if (isset($_POST["price"])) {
+        Bet::PlaceBet($_POST['walkId'], $_POST['walkerId'], $_POST['price']);
     }
 }
 ?>
