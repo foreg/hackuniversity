@@ -107,7 +107,7 @@ function Book(sender) {
     var div = document.createElement("div");
     div.id = "info";
     div.classList.add("top", "info");
-    div.innerHTML = "<h1>" + sender.name + "</h1>";
+    // div.innerHTML = "<h1>" + sender.name + "</h1>";
 
     var xmlhttp = new XMLHttpRequest();
     //var walkId;
@@ -115,18 +115,26 @@ function Book(sender) {
         if (this.DONE == this.readyState) {
             var res = this.responseText.split('_');
             //walkId = res[0];
-            for (var i = 0; i < res.length; i++) {
+            
+            var mas = ["Участники аукциона","Кличка","Порода","Размер","Пол","Возраст","Коментарии","Имя выгульщика","Телефон","Дата/время заказа","Время прогулки","Деньги(Руб.)"];
+            var t=1;
+            for (var i = 3; i < res.length; i++) {
+
                 var span = document.createElement("span");
                 span.classList.add("top");
-                span.innerHTML = res[i] + "<br>";
-                div.appendChild(span);                    
+
+                span.innerHTML = mas[t]+": ";
+              
+                span.innerHTML += res[i] +"<br>";
+                div.appendChild(span);      
+                          t++;
             }
         }
     
     };
     var body =  'Type=WalkInfo' + 
                 '&walkId=' + sender.name;
-    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.open("POST",'php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
 
@@ -156,11 +164,13 @@ function Refresh(walkId) {
     xmlhttp.onreadystatechange = function() {
         if (this.DONE == this.readyState) {
             var res = this.responseText.split('_');
+            
             for (var i = 0; i < res.length; i++) {
                 var span = document.createElement("span");
                 //span.classList.add("auction");
                 span.className = "auction";
-                span.innerHTML = res[i] + "<br>";
+                var current = res[i].split('|');
+                span.innerHTML = current[0] + ' ' + current[1] + 'р ' + current[2] + ' ' + "<br>";
                 document.getElementById("bets").appendChild(span);                    
             }
         }
@@ -168,7 +178,7 @@ function Refresh(walkId) {
     };
     var body =  'Type=ShowBets' + 
                 '&walkId=' + walkId;
-    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.open("POST",'php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
 }
@@ -184,7 +194,8 @@ function ShowBets(walkId) {
             for (var i = 0; i < res.length; i++) {
                 var span = document.createElement("span");
                 span.classList.add("auction");
-                span.innerHTML = res[i] + "<br>";
+                var current = res[i].split('|');
+                span.innerHTML = current[0] + ' ' + current[1] + 'р ' + current[2] + ' ' + "<br>";
                 bets.appendChild(span);                    
             }
         }
@@ -192,7 +203,7 @@ function ShowBets(walkId) {
     };
     var body =  'Type=ShowBets' + 
                 '&walkId=' + walkId;
-    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.open("POST",'php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
     setTimeout(()=>{
@@ -210,6 +221,7 @@ function ShowBets(walkId) {
     form.action = "php/submit.php";
 
     var price = document.createElement("input");
+    price.classList.add("inp");
     price.type = "text";
     price.name = "price";
     price.placeholder = "price";
@@ -228,7 +240,7 @@ function ShowBets(walkId) {
     
     };
     var body =  'Type=GetID';
-    xmlhttp1.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp1.open("POST",'php/submit.php' , true);
     xmlhttp1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp1.send(body);
     setTimeout(()=>{
@@ -318,7 +330,7 @@ function ShowDogs() {
     
     };
     var body =  'Type=ShowWalks';
-    xmlhttp.open("POST",'/hack/php/submit.php' , true);
+    xmlhttp.open("POST",'php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
 }
