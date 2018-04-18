@@ -1,0 +1,33 @@
+body {
+    font-family: "Regular", sans-serif;
+    font-size: 16px;
+    min-width: 320px;
+}
+
+.Color1{
+
+}
+.Color2{
+    color:White;
+}
+.Color3{
+    color:black;
+}
+.Color4{
+    color:#969696;
+}
+.Inline{
+    display: inline-block;
+}
+.Upper{
+    text-transform: uppercase;
+}
+.Bold{
+    font-weight: bold;
+}
+.Up{
+    margin-top: 40px;
+}
+.Centerr{
+    text-align: center;
+}
