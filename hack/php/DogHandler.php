@@ -1,8 +1,8 @@
 <?
-class Dog 
+class Dog
 {
     public static function Show($user) {
-        
+
         $connection = new PDO('mysql:host=localhost;dbname=hack;charset=utf8', 'root');
         $rows = $connection->query("SELECT `id` FROM `Users` WHERE `hash` = '".$user."'");
         $userId;
@@ -17,8 +17,8 @@ class Dog
         while (($row = $rows->fetch()) == true) {//значит уже есть юзер 
             echo "<div class='myDog'>";
             echo "<span>".$row['Name']."</span>";
-            echo "<input type='button' id = ".$row['Id']." value = 'Walk' onclick = 'Walk(this)'></input>";
-            
+            echo "<input type='button' id = ".$row['Id']." value = '&#128021;' onclick = 'Walk(this)'></input>";
+
             echo "</div>";
         }
     }
@@ -38,13 +38,13 @@ class Dog
 }
 //var_dump($_COOKIE["username"]);
 if (isset($_POST["Type"])) {
-switch ($_POST["Type"]) {
-    case 'AddNewDog':
+    switch ($_POST["Type"]) {
+        case 'AddNewDog':
         {
             Dog::New($_COOKIE["username"], $_POST["name"], $_POST["breed"], $_POST["size"], $_POST["sex"], $_POST["age"], $_POST["comments"]);
             header("Location: profile.php");
         }
-        break;
-}
+            break;
+    }
 }
 ?>

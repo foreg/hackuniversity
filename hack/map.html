@@ -7,9 +7,38 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script src="js/map.js" type="text/javascript"></script>
+
+    <!--<link rel="stylesheet" href="php/libs/Bootstrap/css/bootstrap.min.css">-->
+
+
+    <link rel="stylesheet" href="cssMain/fonts.css">
+    <link rel="stylesheet" href="cssMain/main.css">
+
+    <link rel="stylesheet" href="cssMain/style.css">
+    <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400&amp;subset=cyrillic" rel="stylesheet">-->
+
+    <link rel="stylesheet" href="cssMain/media.css">
 </head>
 
 <body>
+<section class="menuAbs">
+    <div class="container">
+        <div class="row ">
+            <div class="menuOpt return">
+                <form class="" action="indexAuth.html" method="POST">
+                    <ul class=" coord pull-right">
+                        <li><input type="submit"  class="submit2 Color3" value="в главное меню"></li>
+                    </ul>
+                </form>
+                <form class="" action="php/profile.php" method="POST">
+                    <ul class=" coord pull-right">
+                        <li><input type="submit"  class="submit2 Color3" value="в профиль"></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 <div id="map"></div>
 </body>
 

@@ -14,52 +14,15 @@
 
     <link rel="stylesheet" href="css/media.css">
 </head>
-<body>
-<div class="bgk1">
-    <section class="contacts">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-left"><span
-                            class="glyphicon glyphicon-home"></span><span> г.Тюмень ул.Ленина 23</span>
-                    </div>
-                    <div class="pull-right mar"><span class="glyphicon glyphicon-envelope"></span>
-                        WallkieDog@mail.ru
-                    </div>
-                    <div class="pull-right"><span class="glyphicon glyphicon-headphones"></span>
-                        +7(12340)22-22-22
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="menu">
-        <div class="container">
-            <div class="row ">
-                <div class="menuOpt">
-                    <ul class="col-md-2 coord pull-left">
-                        <li class="logo"><a href="../index.html"><img src="img/logo.png" height="80" width="80"/></a></li>
-                    </ul>
-                    <ul class=" col-md-5 coord2 pull-left">
-                        <li class="gyper"><a href="#">о нас</a></li>
-                        <li class="gyper"><a href="#">выгульщики</a></li>
-                        <li class="gyper"><a href="#">отзывы</a></li>
-                        <li class="gyper"><a href="#">рейтинг</a></li>
-                    </ul>
-                    <form action="login.php" method="POST">
-                        <ul class="col=md-4 coord pull-right">
-                            <li><input type="submit" name="in" class="btn1St Color3" value="Войти"></li>
-                            <li><input type="submit" name="up" class="btn2St Color3" value="Зарегистрироваться"></li>
-                        </ul>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<div>
+<body class="">
+<div >
     <div class="">
-        <? if (isset($_REQUEST["in"])) echo '<div><!--старый юзер-->
+        <input type="radio" name="odin" checked="checked" <? if (isset($_POST["in"])) echo 'checked="checked"'; ?>
+               id="vkl1"/><label id="label1" for="vkl1">Войти</label><input type="radio"
+                                                                            name="odin" <? if (isset($_POST["up"])) echo 'checked="checked"'; ?>
+                                                                            id="vkl2"/><label for="vkl2">Зарегистрироваться</label>
+
+        <div><!--старый юзер-->
             <form id="login3" class="vhod">
                 <fieldset id="inputs">
                     <p class="Bold">Введите логин</p>
@@ -70,29 +33,20 @@
                         <input id="submit" type="button" name="add"  value="Войти" onclick="login(this)">
                     </fieldset>
                 </fieldset>
-                      
-            </form>              
-        </div>';
-        if (isset($_REQUEST["up"])) echo '
-        <div> <!--новый юзер-->
-            <form id="login2" class="register">
-             <fieldset id="inputs">
-                <p class="Bold">E-mail</p>
-                <input type="text" name="email" value="" placeholder="e-mail">
-                <p class="Bold">Пароль (не менее 6 латинских символов разного регистра)</p>
-                <input type="password" name="PasswordN" value="" placeholder="Пароль">
-                <p class="Bold">Подтвердите пароль</p>
-                <input type="password" name="Confirm" value="" placeholder="Подтвердите">
-                <fieldset id="actions">
-                    <input id="submit" type="button" name="add" class="btn" value="Зарегистрироваться" onclick="newUser(this)">
-                </fieldset>
-             </fieldset>
+
             </form>
         </div>
-        ';
-        ?>
-
-
+        <div> <!--новый юзер-->
+            <form id="login2" class="register">
+                <p class="small">E-mail</p>
+                <input type="text" name="email" value="" placeholder="e-mail">
+                <p class="small">Пароль (не менее 6 латинских символов разного регистра)</p>
+                <input type="password" name="PasswordN" value="" placeholder="Пароль">
+                <p class="small">Подтвердите пароль</p>
+                <input type="password" name="Confirm" value="" placeholder="Подтвердите">
+                <input type="button" name="add" class="btn" value="Зарегистрироваться" onclick="newUser(this)">
+            </form>
+        </div>
     </div>
 </div>
 <?
@@ -132,7 +86,7 @@
                 else {
                     //alert("Добро пожаловать " + this.responseText);
                     setCookie("username", md5(document.getElementsByName('Email')[0].value + document.getElementsByName('Password')[0].value), 365);
-                    window.location = "profile.php";
+                    window.location = "https://127.0.0.1/hack/php/profile.php";
                 }
             }
 
@@ -155,7 +109,7 @@
                         if (this.responseText == "") {
                             alert("Пользователь успешно зарегистрирован. Войдите с аккаунт");
                             //alert(this.responseText.indexOf("Пользователь"+" с таким логином уже есть"));
-                            location = location + "?in";
+                            location.reload();
                         }
                         else {
                             alert(this.responseText);
@@ -165,7 +119,7 @@
                 var body = 'Type=register' +
                     '&Email=' + document.getElementsByName('email')[0].value +
                     '&Password=' + document.getElementsByName('PasswordN')[0].value;
-                xmlhttp.open("POST", 'submit.php', true);
+                xmlhttp.open("POST", '/hack/php/submit.php', true);
                 xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                 xmlhttp.send(body);
             }

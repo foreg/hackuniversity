@@ -3,117 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link href="../css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="libs/Bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/media.css">
 </head>
 <body>
-<div class="bgk1">
-    <section class="contacts">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-left"><span
-                            class="glyphicon glyphicon-home"></span><span> г.Тюмень ул.Ленина 23</span>
-                    </div>
-                    <div class="pull-right mar"><span class="glyphicon glyphicon-envelope"></span>
-                        WallkieDog@mail.ru
-                    </div>
-                    <div class="pull-right"><span class="glyphicon glyphicon-headphones"></span>
-                        +7(12340)22-22-22
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="menu">
-        <div class="container">
-            <div class="row ">
-                <div class="menuOpt">
-                    <ul class="col-md-2 coord pull-left">
-                        <li class="logo"><a href="../indexAuth.html"><img src="img/logo.png" height="80" width="80"/></a></li>
-                    </ul>
-                    <ul class=" col-md-5 coord pull-left">
-                        <li class="gyper"><a href="#">о нас</a></li>
-                        <li class="gyper"><a href="#">выгульщики</a></li>
-                        <li class="gyper"><a href="#">отзывы</a></li>
-                        <li class="gyper"><a href="#">рейтинг</a></li>
-                    </ul>
-                    <ul class="col=md-2 coord pull-right">
-                        <li>
-                            <div id="placeForExitButton"></div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
-<div class="main">
-    <div class="OrderDogs">
-        <h1>Ваши питомцы</h1>
-        <div class = "content">
-            <div class = "left">
-
-                <?
-                include("DogHandler.php");
-                Dog::Show($_COOKIE["username"]);
-                ?>
-                <div class="medium1">
-                <input type = "button" id = "NewDog" onclick = "AddDog()" class="submit2" value = "Добавить питомца">
-<!--                <input type="submit" class="walking" id ="submit2" value="Обновить">-->
-<!--                <input type="submit" class="walking" id ="submit2" value="Удалить">-->
-               </div>
-                <div class="medium">
-                </div>
-            </div>
-        </div>
-
-        <!--<input type="button" id="submit2" name="submit" value="Изменить">-->
-        <!--<input type="button" id="submit1" name="submit" value="Удалить">-->
-        <! код Php  !>
+<div class="rightMenu">
+    <div class="greetings">
+        <span id="g"></span><div id = "placeForExitButton"></div>
     </div>
-    <form id="loginLK" action="#" method="post">
-        <h1>Личный кабинет</h1>
-        <fieldset id="inputs1">
-            <div class="Blocks"> <div class="textDiv">ФИО</div> <input id="username" name="login" type="text" placeholder="Иванов И.И." autofocus required></div>
-            <div class="Blocks1"> <div class="textDiv">Телефон</div> <input id="password" name="password" type="text" placeholder="+79224789108" required></div>
-            <div class="Blocks"> <div class="textDiv">E-mail</div> <input id="password" name="password" type="text" placeholder="hed9898@Mail.ru" required></div>
-            <div class="Blocks1"> <div class="textDiv">Адрес</div> <input id="password" name="password" type="text" placeholder="ул. Харьковская 27/кв 31" required></div>
-            <div class="Blocks"> <div class="textDiv">Соц.сети</div> <input id="password" name="password" type="text" placeholder="vk.com/login" required></div>
-            <div class="Blocks1"> <div class="textDiv">&nbsp;&nbsp;</div> <input  name="password" class="orange" id="submit1" type="submit" value="Сохранить" required></div>
-        </fieldset>
-    </form>
 </div>
-<!--<section class="end">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-3 ">-->
-<!--                <h3 class="Color2">Контакты</h3>-->
-<!--                <div class="Color2 pull-left "><span-->
-<!--                        class="glyphicon glyphicon-home"></span><span> г.Тюмень ул.Ленина 23</span>-->
-<!--                </div>-->
-<!--                <div class="Color2 pull-left topp"><span class="glyphicon glyphicon-envelope"></span>-->
-<!--                    WallkieDog@mail.ru-->
-<!--                </div>-->
-<!--                <div class="Color2 pull-left topp"><span class="glyphicon glyphicon-headphones"></span>-->
-<!--                    +7(12340)22-22-22-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="col-md-2">-->
-<!--                <h3 class="Color2 about">Ссылки</h3>-->
-<!--                <ul class="coord1 Color2">-->
-<!--                    <li><a href="#">о нас</a></li>-->
-<!--                    <li><a href="#">выгульщики</a></li>-->
-<!--                    <li><a href="#">особенности</a></li>-->
-<!--                    <li><a href="#">рейтинг</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</section>-->
+<div class = "content">
+    <div class = "left">
+        <input type = "button" id = "NewDog" onclick = "AddDog()" value = "Добавить собаку">
+        <?
+            include("DogHandler.php");
+            Dog::Show($_COOKIE["username"]);
+        ?>
+        
+    </div>
+</div>
+
 
 
 <script>
@@ -128,7 +35,7 @@ checkRights();
         document.getElementById("NewDog").hidden = true;
         var div = document.createElement("div");
         div.id = "dog";
-        div.classList.add("top", "dog","Blocks","textDiv","corr1");
+        div.classList.add("top", "dog");
         div.innerHTML = "<h1>Занесение информации о собаке</h1>";
         var closeBTN = document.createElement("img");
         closeBTN.src = "../img/close.png";
@@ -141,9 +48,8 @@ checkRights();
         var form  = document.createElement("form");
         form.id = "form";
         form.method = "POST";
-        form.classList.add("corr2");
         form.action = "DogHandler.php";
-
+        
         var Type = document.createElement("input");
         Type.type = "hidden";
         Type.name = "Type";
@@ -152,7 +58,6 @@ checkRights();
         var Name = document.createElement("input");
         Name.type = "text";
         Name.name = "name";
-        Name.classList.add("corr");
         Name.placeholder = "Кличка";
 
         var Breed = document.createElement("input");
@@ -183,8 +88,6 @@ checkRights();
         var Submit = document.createElement("input");
         Submit.type = "submit";
         Submit.name = "submit";
-        Submit.id = "submit1";
-        Submit.classList.add("orange");
         Submit.value = "Добавить";
 
         
@@ -203,8 +106,7 @@ checkRights();
         var btn = document.createElement ('input');
         btn.type = 'button';
         btn.onclick = exi;
-        btn.value = 'Выйти';
-        btn.classList = 'submit3';
+        btn.value = 'Exit';
         document.getElementById('placeForExitButton').appendChild(btn);
         document.getElementById("g").innerHTML = "Добро пожаловать";
         document.getElementsByClassName("greetings")[0].classList.remove("displayNone");
@@ -215,8 +117,8 @@ checkRights();
 function exi() {
     //alert("d");
     setCookie("username", "", {expires: -1})
-    location = "login.php?in";
-}
+	location = "login.php?in";
+    }
 // instantLogin();
 // function instantLogin() {
 //     var xmlhttp = new XMLHttpRequest();
@@ -255,7 +157,7 @@ function login() {
     var body =  'Type=register' + 
                 '&Email=' + document.getElementsByName('Email')[0].value + 
                 '&Password='+ document.getElementsByName('Password')[0].value;
-    xmlhttp.open("POST",'submit.php' , true);
+    xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
 }
@@ -280,7 +182,7 @@ var regForEmail = /^[A-Za-z0-9]{1,}@\w{2,6}.\w{2,3}$/;
             var body = 'Type=register' + 
             '&Email=' + document.getElementsByName('email')[0].value + 
             '&Password='+ document.getElementsByName('PasswordN')[0].value;
-            xmlhttp.open("POST",'submit.php' , true);
+            xmlhttp.open("POST",'/hack/php/submit.php' , true);
             xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xmlhttp.send(body);
         }
@@ -304,25 +206,25 @@ xmlhttp.onreadystatechange = function() {
 };
 var body =  'Type=GetAdress' + 
             '&dogId=' + sender.id;
-xmlhttp.open("POST",'submit.php' , true);
+xmlhttp.open("POST",'/hack/php/submit.php' , true);
 xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xmlhttp.send(body);
 setTimeout(()=>{
 var div = document.createElement("div");
 div.id = "dog";
-div.classList.add("top", "dog","Blocks","textDiv","corr1");
+div.classList.add("top", "dog");
 div.innerHTML = "<h1>Занесение информации о прогулке</h1>";
-//div.innerHTML += "<h3>" + sender.id+ "</h3>";
-div.innerHTML += "<form action = 'submit.php' method='POST' class='corr2'> "
+div.innerHTML += "<h3>" + sender.id+ "</h3>";
+div.innerHTML += "<form action = 'submit.php' method='POST'> " 
 + "<input type='datetime-local' name = 'date'>"
 + "<input type='text' name = 'adress' value = '"+defaultAdress+"'>"
 + "<input type='text' name = 'duration' placeholder='duration'>"
 + "<input type='text' name = 'price' placeholder='price'>"
 + "<input type='hidden' name = 'dogId' value = "+sender.id+">"
-+ "<input type='submit' id='submit1' class='orange' name = 'Type' value = 'Отправить'>"; //поменять submit.php если менять value
++ "<input type='submit' name = 'Type' value = 'Отправить'>"; //поменять submit.php если менять value
 + "</form>";
 var closeBTN = document.createElement("img");
-closeBTN.src = "../img/close.png";
+closeBTN.src = "img/close.png";
 closeBTN.classList.add("closeBTN");
 closeBTN.onclick = () => {
     document.getElementById("dog").remove();
@@ -343,14 +245,14 @@ function checkRights() {
                 document.getElementsByClassName("left")[0].innerHTML += '<input type = "button" id = "JoinCourses" onclick = "JoinCourses()" value = "Записаться на курсы">';
             }
             else {
-                document.getElementsByClassName("medium")[0].innerHTML += '<input type = "button" id = "OpenMap" class="submit2" onclick = "OpenMap()" value = "Перейти к карте">';
+                document.getElementsByClassName("left")[0].innerHTML += '<input type = "button" id = "OpenMap" onclick = "OpenMap()" value = "Перейти к карте">';
             }
         }
     
     };
     var body =  'Type=checkRights' + 
                 '&Username=' + getCookie("username") + 
-    xmlhttp.open("POST",'submit.php' , true);
+    xmlhttp.open("POST",'/hack/php/submit.php' , true);
     xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xmlhttp.send(body);
 }

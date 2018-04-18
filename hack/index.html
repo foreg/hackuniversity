@@ -29,13 +29,13 @@
     <link rel="stylesheet" href="php/libs/Bootstrap/css/bootstrap.min.css">
 
 
-    <link rel="stylesheet" href="php/css/fonts.css">
-    <link rel="stylesheet" href="php/css/main.css">
+    <link rel="stylesheet" href="cssMain/fonts.css">
+    <link rel="stylesheet" href="cssMain/main.css">
 
-    <link rel="stylesheet" href="php/css/style.css">
+    <link rel="stylesheet" href="cssMain/style.css">
     <!--<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400&amp;subset=cyrillic" rel="stylesheet">-->
 
-    <link rel="stylesheet" href="php/css/media.css">
+    <link rel="stylesheet" href="cssMain/media.css">
     <title>Main Page</title>
 </head>
 <body>
@@ -49,18 +49,18 @@
             <div class="row ">
                 <div class="menuOpt">
                     <ul class="col-md-2 logo pull-left">
-                        <li class=""><img src="php/img/logo.png" height="80" width="80"/></li>
+                        <li class="logo"><a href="index.html"><img src="php/img/logo.png" height="80" width="80"/></a></li>
                     </ul>
-                    <ul class=" col-md-6 coord pull-left">
-                        <li><a href="#">о нас</a></li>
+                    <ul class=" col-md-6 coord2 pull-left">
+                        <li><a href="#about">о нас</a></li>
                         <li><a href="#">выгульщики</a></li>
-                        <li><a href="#">особенности</a></li>
+                        <li><a href="#why">особенности</a></li>
                         <li><a href="#">рейтинг</a></li>
                     </ul>
                     <form action="php/login.php" method="POST">
                         <ul class="col=md-4 coord pull-right">
-                                <li><input type="submit" name="in" class="btn1St Color3" value="Войти"></li>
-                                <li><input type="submit" name="up" class="btn2St Color3" value="Зарегистрироваться"></li>
+                                <li><input type="submit" name="in" class="btn1 Color3" value="Войти"></li>
+                                <li><input type="submit" name="up" class="btn2 Color3" value="Зарегистрироваться"></li>
                             </ul>
                          
                     </form>
@@ -75,14 +75,14 @@
                 <div class="col-md-6">
                     <h2 class="company-name Color2">Walkie-Doggie</h2>
                     <img src="php/img/active.png" height="4" width="58"/>
-                    <h1 class="zag Color2">Сервис по выгулу собак</h1>
-                    <p class="main-text Color2">Мы соединяем две категории людей, которые удовлетворяют потребности друг
+                    <h2 class="zag Color2">Сервис по выгулу собак</h2>
+                    <p class="main-text Color2 centerr">Мы соединяем две категории людей, которые удовлетворяют потребности друг
                         друга. Одна сторона получает услугу, которая упростит ей жизнь, вторая - оплату труда и
                         возможность проверить свою привязанность к собакам. </p>
-                    <div class="Up">
-                        <input type="submit" name="up" class="btn2St Color3" value="Сделать заказ">
-                        
-                        
+                    <div class="In">
+                        <form action="php/login.php" method="POST">
+                            <input type="submit" name="in" class="btn2St Color3" value="Сделать заказ">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -91,6 +91,7 @@
 </div>
 
 <section class="about">
+    <p><a name="about"></a></p>
     <div class="container">
         <div class="row ">
 
@@ -167,6 +168,7 @@
     </div>
 </section>
 <section class="equip">
+    <p><a name="why"></a></p>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
