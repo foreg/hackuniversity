@@ -1,0 +1,5 @@
+<ul class="col=md-2 coord pull-right">
+                        <li>
+                            <div id="placeForExitButton"></div>
+                        </li>
+                    </ul>
